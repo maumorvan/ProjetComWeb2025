@@ -10,33 +10,58 @@ import {
   RadioGroup,
   TextField,
   Typography,
+  Alert
 } from "@mui/material";
 
 const Connexion = () => {
     const [typeUtilisateur, setTypeUtilisateur] = useState("etudiant");
     const [identifiant, setIdentifiant] = useState("");
     const [motDePasse, setMotDePasse] = useState("");
+    const [erreurConnexion, setErreurConnexion] = useState(false);
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setErreurConnexion(false);
 
-        const utilisateur = {
-            id: identifiant,
+        const data = {
             type: typeUtilisateur,
+            identifiant,
+            motDePasse,
         };
+      
 
-        localStorage.setItem("utilisateur", JSON.stringify(utilisateur));
-
-        if (typeUtilisateur === "etudiant") {
-            navigate(`/tableau_de_bord_etudiant/${identifiant}`);
-        } else {
-            navigate(`/tableau_de_bord_enseignant/${identifiant}`);
+        try {
+            const response = await fetch("https://lammarboudj.zzz.bordeaux-inp.fr/noty/api/connexion.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+      
+            const utilisateur = await response.json();
+      
+            if (utilisateur && utilisateur.id) {
+                localStorage.setItem("utilisateur", JSON.stringify(utilisateur));
+      
+                if (typeUtilisateur === "etudiant") {
+                    navigate(`/tableau_de_bord_etudiant/${utilisateur.id}`);
+                } else {
+                    navigate(`/tableau_de_bord_enseignant/${utilisateur.id}`);
+                }
+            } else {
+                setErreurConnexion(true);
+            }
+        } catch (error) {
+            console.error("Erreur de connexion :", error);
+            setErreurConnexion(true);
         }
     };
 
     return (
         <Grid container>
+            {/* Partie gauche */}
             <Grid 
                 size={6} 
                 display="flex"
@@ -54,7 +79,7 @@ const Connexion = () => {
                 <img src="../../public/noty.png" style={{width:"25vw"}}/>
             </Grid>
 
-            {/* Formulaire de connexion */}
+            {/* Partie droite : Formulaire de connexion */}
             <Grid 
                 size={6}
                 display="flex"
@@ -116,6 +141,13 @@ const Connexion = () => {
                         onChange={(e) => setMotDePasse(e.target.value)}
                         required
                     />
+
+                    {/* Message d’erreur */}
+                    {erreurConnexion && (
+                        <Alert severity="error">
+                            Vos informations n’ont pas été reconnues. Veuillez recommencer.
+                        </Alert>
+                    )}
 
                     {/* Bouton de connexion (soumission du formulaire) */}
                     <Button type="submit" variant="contained" color="primary" fullWidth>
