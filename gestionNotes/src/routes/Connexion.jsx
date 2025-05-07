@@ -29,10 +29,9 @@ const Connexion = () => {
             identifiant,
             motDePasse,
         };
-      
 
         try {
-            const response = await fetch("https://lammarboudj.zzz.bordeaux-inp.fr/noty/api/connexion.php", {
+            const response = await fetch("http://localhost/noty/api/connexion.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
