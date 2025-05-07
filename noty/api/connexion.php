@@ -18,7 +18,7 @@
     function recupUtilisateur(string $type, string $identifiant, string $mdp) {
         $host = 'localhost';
         $dbname = 'maumorvan';
-        $username = 'root';
+        $username = 'maumorvan';
         $password = 'noty';
 
         try {

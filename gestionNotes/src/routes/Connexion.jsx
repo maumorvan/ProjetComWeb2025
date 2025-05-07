@@ -31,7 +31,7 @@ const Connexion = () => {
         };
 
         try {
-            const response = await fetch("http://localhost/noty/api/connexion.php", {
+            const response = await fetch("https://maumorvan.zzz.bordeaux-inp.fr/noty/api/connexion.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -75,7 +75,7 @@ const Connexion = () => {
                     Noty
                 </Typography>
 
-                <img src="../../public/noty.png" style={{width:"25vw"}}/>
+                <img src="noty.png" style={{width:"25vw"}}/>
             </Grid>
 
             {/* Partie droite : Formulaire de connexion */}
