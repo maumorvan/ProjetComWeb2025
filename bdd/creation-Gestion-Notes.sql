@@ -1,5 +1,5 @@
 -- ============================================================================
--- Fichier : creation-gestion-Notes.sql
+-- Fichier : creation-gestion-notes.sql
 -- Date : avril 2025
 -- Rôle : Création de la base de données (create, alter)
 -- ============================================================================

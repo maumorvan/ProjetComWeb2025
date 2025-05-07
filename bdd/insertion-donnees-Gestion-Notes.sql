@@ -1,5 +1,5 @@
 -- ============================================================================
--- Fichier : insertion-donnees-gestion-Notes.sql
+-- Fichier : insertion-donnees-gestion-notes.sql
 -- Date : mai 2025
 -- Rôle : Ajout de données de tests 
 -- ============================================================================
