@@ -4,34 +4,32 @@
 -- Rôle : Ajout de données de tests 
 -- ============================================================================
 
--- INSERT INTO promotions (id, nom, annee_diplome) 
--- VALUES  
--- (1,'Jules César','2025-01-01'),
--- (2,'Marie Curie','2026-01-01'),
--- (3,'Les frères Lumière','2027-01-01');
+INSERT INTO promotions (id, nom, annee_diplome) 
+VALUES  
+(1,'Jules César','2025-01-01'),
+(2,'Marie Curie','2026-01-01'),
+(3,'Les frères Lumière','2027-01-01');
 
--- INSERT INTO groupes (id, nom, id_promotion) 
--- VALUES  
--- (10,'Groupe 1',3),
--- (11,'Groupe 2',3),
--- (12,'Groupe 3',3),
--- (13,'Groupe 4',3),
--- (14,'Groupe 1',2),
--- (15,'Groupe 2',2),
--- (16,'Groupe 3',2),
--- (17,'Groupe 4',2),
--- (18,'Groupe 1',1),
--- (19,'Groupe 2',1),
--- (20,'Groupe 3',1),
--- (21,'Groupe 4',1);
+INSERT INTO groupes (id, nom, id_promotion) 
+VALUES  
+(10,'Groupe 1',3),
+(11,'Groupe 2',3),
+(12,'Groupe 3',3),
+(13,'Groupe 4',3),
+(14,'Groupe 1',2),
+(15,'Groupe 2',2),
+(16,'Groupe 3',2),
+(17,'Groupe 4',2),
+(18,'Groupe 1',1),
+(19,'Groupe 2',1),
+(20,'Groupe 3',1),
+(21,'Groupe 4',1);
 
--- INSERT INTO etudiants (id, nom, prenom, login_connexion, mdp, id_groupe) 
--- VALUES  
--- (100,'Adelmard','Nathan', 'anathan','nathan1',10),
--- (101,'Advenier','Flore','aflore','flore2',14),
--- (102,'Ait Rai', 'Abdessamia','aabdessamia','abdesamia3',14);
-
-
+INSERT INTO etudiants (id, nom, prenom, login_connexion, mdp, id_groupe) 
+VALUES  
+(100,'Adelmard','Nathan', 'anathan','nathan1',10),
+(101,'Advenier','Flore','aflore','flore2',14),
+(102,'Ait Rai', 'Abdessamia','aabdessamia','abdesamia3',14);
 
 INSERT INTO enseignants(id, nom, prenom, login_connexion, mdp)
 VALUES
