@@ -17,9 +17,9 @@
     
     function recupUtilisateur(string $type, string $identifiant, string $mdp) {
         $host = 'localhost';
-        $dbname = 'gestion_notes';
+        $dbname = 'maumorvan';
         $username = 'root';
-        $password = '';
+        $password = 'noty';
 
         try {
             $bdd = new PDO('mysql:host='. $host .';dbname='. $dbname .';charset=utf8',
