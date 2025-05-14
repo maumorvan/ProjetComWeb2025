@@ -40,7 +40,7 @@ const Connexion = () => {
             });
       
             const utilisateur = await response.json();
-      
+                  
             if (utilisateur && utilisateur.id) {
                 utilisateur["typeUtilisateur"] = typeUtilisateur;
                 localStorage.setItem("utilisateur", JSON.stringify(utilisateur));

@@ -1,19 +1,17 @@
 import { 
     Grid,
 } from "@mui/material";
-import Menu from "../composants/Menu";
+
+import TableauDeBordLayout from "../layouts/TableauDeBordLayout";
+import TableauDeBordEtudiantContent from "../layouts/TableauDeBordEtudiantContent";
 
 const TableauDeBordEtudiant = () => {
     return (
         <>
             <Grid container>
-               <Menu/>
-                
-                <Grid 
-                    size={10} 
-                >
-
-                </Grid>
+                <TableauDeBordLayout>
+                    <TableauDeBordEtudiantContent/>
+                </TableauDeBordLayout>
             </Grid>
         </>
     )
