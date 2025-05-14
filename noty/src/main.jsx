@@ -9,17 +9,19 @@ import TableauDeBordEnseignant from './routes/TableauDeBordEnseignant';
 import RedirectionInitiale from './routes/RedirectionInitiale';
 import RouteProtegee from './routes/RouteProtegee';
 
+// Définition des routes de l'application.
 const router = createBrowserRouter([
   {
-    path: "/",
+    // Route par défaut -> redirige automatiquement selon le type d'utilisateur et l'authentification faite ou non.
+    path: "/", 
     element: <RedirectionInitiale />,
   },
   {
-    path: "/connexion",
+    path: "/connexion", 
     element: <Connexion />,
   },
   {
-    path: "/tableau_de_bord_etudiant/:id",
+    path: "/tableau_de_bord_etudiant/:id", // Accessible uniquement si connecté.
     element: (
       <RouteProtegee>
         <TableauDeBordEtudiant />
@@ -27,7 +29,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/tableau_de_bord_enseignant/:id",
+    path: "/tableau_de_bord_enseignant/:id", // Accessible uniquement si connecté.
     element: (
       <RouteProtegee>
         <TableauDeBordEnseignant />
@@ -36,6 +38,8 @@ const router = createBrowserRouter([
   },
 ]);
 
+// Point d'entrée de l'application.
+// Le RouterProvider permet de rendre la navigation dynamique dans l'application.
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RouterProvider router={router} />

@@ -13,11 +13,14 @@ const Menu = () => {
     const [infosSupplementaires, setInfosSupplementaires] = useState(null);
     const navigate = useNavigate();
 
+    // Fonction appelée au clic sur le bouton de déconnexion pour retirer les informations 
+    // de connexion de l'utilisateur du localStorage (suspension de sa session).
     const handleDeconnexion = () => {
         localStorage.removeItem("utilisateur");
         navigate("/connexion");
     };
 
+    // Thème customisé pour rendre le bouton de déconnexion blanc.
     const theme = createTheme({
         palette: {
             white: {
@@ -29,8 +32,11 @@ const Menu = () => {
         },
     });
 
+    // Données de l’utilisateur connecté (stockées après la connexion).
     const utilisateur = JSON.parse(localStorage.getItem("utilisateur"));
 
+    // Récupération des infos de groupe et promotion si étudiant.
+    // Le useEffect est appelé à chaque chargement de la page (une seule fois).
     useEffect(() => {
         const recupInfosSupplementaires = async () => {
             let infos = null;
@@ -81,6 +87,7 @@ const Menu = () => {
                         Noty
                     </Typography>
 
+                    {/* Icône */}
                     <img src="/user.png" style={{width:"2.5rem"}}/>
 
                     {/* Informations de l'utilisateur connecté */}

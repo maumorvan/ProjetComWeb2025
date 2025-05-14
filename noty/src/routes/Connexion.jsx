@@ -14,14 +14,22 @@ import {
 } from "@mui/material";
 
 const Connexion = () => {
+    // Champs du formulaire.
     const [typeUtilisateur, setTypeUtilisateur] = useState("etudiant");
     const [identifiant, setIdentifiant] = useState("");
     const [motDePasse, setMotDePasse] = useState("");
     const [erreurConnexion, setErreurConnexion] = useState(false);
+    
     const navigate = useNavigate();
 
+    /**
+     * Fonction déclenchée à la soumission du formulaire.
+     * Appelle l'API en POST pour vérifier les identifiants.
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
+         // On masque l’erreur si elle était visible. Utile dans le cas où l'utilisateur aurait déjà tenté de 
+         // se connecter mais aurait se serait trompé d'identifiant par exemple.
         setErreurConnexion(false);
 
         const data = {
@@ -42,15 +50,20 @@ const Connexion = () => {
             const utilisateur = await response.json();
                   
             if (utilisateur && utilisateur.id) {
+                // Ajout du type utilisateur pour l'affichage futur.
                 utilisateur["typeUtilisateur"] = typeUtilisateur;
+
+                // Stockage local pour maintenir la session.
                 localStorage.setItem("utilisateur", JSON.stringify(utilisateur));
       
+                // Redirection vers le bon tableau de bord.
                 if (typeUtilisateur === "etudiant") {
                     navigate(`/tableau_de_bord_etudiant/${utilisateur.id}`);
                 } else {
                     navigate(`/tableau_de_bord_enseignant/${utilisateur.id}`);
                 }
             } else {
+                // Aucune correspondance trouvée (identifiants incorrectes).
                 setErreurConnexion(true);
             }
         } catch (error) {
@@ -61,7 +74,7 @@ const Connexion = () => {
 
     return (
         <Grid container>
-            {/* Partie gauche */}
+            {/* Partie gauche : titre et image */}
             <Grid 
                 size={6} 
                 display="flex"
@@ -100,7 +113,7 @@ const Connexion = () => {
                     flexDirection="column" 
                     rowGap="1rem"
                 >
-                    {/* Type d'utilisateur */}
+                    {/* Sélection du type d'utilisateur */}
                     <FormControl>
                         <RadioGroup
                             row
@@ -142,14 +155,14 @@ const Connexion = () => {
                         required
                     />
 
-                    {/* Message d’erreur */}
+                    {/* Message d’erreur si identifiants invalides */}
                     {erreurConnexion && (
                         <Alert severity="error">
                             Vos informations n’ont pas été reconnues. Veuillez recommencer.
                         </Alert>
                     )}
 
-                    {/* Bouton de connexion (soumission du formulaire) */}
+                    {/* Bouton de validation (soumission du formulaire) */}
                     <Button type="submit" variant="contained" color="primary" fullWidth>
                         Connexion
                     </Button>
