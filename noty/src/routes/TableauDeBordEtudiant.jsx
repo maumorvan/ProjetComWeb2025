@@ -1,21 +1,20 @@
-import { useNavigate } from "react-router-dom";
-import { Button } from "@mui/material";
+import { 
+    Grid,
+} from "@mui/material";
+import Menu from "../composants/Menu";
 
 const TableauDeBordEtudiant = () => {
-    const navigate = useNavigate();
-
-    const handleDeconnexion = () => {
-        localStorage.removeItem("utilisateur");
-        navigate("/connexion");
-    };
-
     return (
         <>
-            <h1>Tableau de bord étudiant</h1>
+            <Grid container>
+               <Menu/>
+                
+                <Grid 
+                    size={10} 
+                >
 
-            <Button variant="outlined" color="primary" onClick={handleDeconnexion}>
-                Déconnexion
-            </Button>
+                </Grid>
+            </Grid>
         </>
     )
 }

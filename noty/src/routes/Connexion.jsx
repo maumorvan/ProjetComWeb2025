@@ -42,6 +42,7 @@ const Connexion = () => {
             const utilisateur = await response.json();
       
             if (utilisateur && utilisateur.id) {
+                utilisateur["typeUtilisateur"] = typeUtilisateur;
                 localStorage.setItem("utilisateur", JSON.stringify(utilisateur));
       
                 if (typeUtilisateur === "etudiant") {
@@ -75,7 +76,7 @@ const Connexion = () => {
                     Noty
                 </Typography>
 
-                <img src="noty.png" style={{width:"25vw"}}/>
+                <img src="/noty.png" style={{width:"25vw"}}/>
             </Grid>
 
             {/* Partie droite : Formulaire de connexion */}
