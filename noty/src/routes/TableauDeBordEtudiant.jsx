@@ -1,7 +1,7 @@
 import { 
     Grid,
 } from "@mui/material";
-
+import { Navigate, useParams } from "react-router-dom";
 import TableauDeBordLayout from "../layouts/TableauDeBordLayout";
 import TableauDeBordEtudiantContent from "../layouts/TableauDeBordEtudiantContent";
 
@@ -10,6 +10,14 @@ import TableauDeBordEtudiantContent from "../layouts/TableauDeBordEtudiantConten
  * Elle utilise un layout commun avec menu, et injecte le contenu étudiant.
  */
 const TableauDeBordEtudiant = () => {
+    const { id } = useParams();
+    const utilisateur = JSON.parse(localStorage.getItem("utilisateur"));
+
+    // Redirection si l'id dans l'URL ne correspond pas à l'utilisateur connecté.
+    if (utilisateur.id != id || utilisateur.typeUtilisateur !== "etudiant") {
+        return <Navigate to={`/tableau_de_bord_${utilisateur.typeUtilisateur}/${utilisateur.id}`} replace />;
+    }
+
     return (
         <>
             <Grid container>
